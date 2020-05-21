@@ -2,9 +2,13 @@
 
 ## Scripts in main directory
 `projections_binned_ancestralreconstruction.py` performs the range predictions on a per-node basis. 
+
 `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. 
+
 `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability.
+
 `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species.
+
 All scripts contain usage examples in header comments. 
 
 ## Subfolders
