@@ -9,6 +9,8 @@
 
 `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species.
 
+`annotate_maximum_density.py` annotates trees by the single value with maximum probability density. In the case of ties one is arbitrarily taken.
+
 All scripts contain usage examples in header comments. 
 
 ## Subfolders
