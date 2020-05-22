@@ -6,8 +6,7 @@ Usage:
 
 for f in out_*.tre; do
 g=`echo ${f} | sed 's/\.tre//g'`
-echo ${g}.maxdensity.tre
-./annotate_maximum_density.py ${f} ${g}
+./annotate_maximum_density.py ${f} ${g}.maxdensity.tre
 done
 
 
