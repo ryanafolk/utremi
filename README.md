@@ -1,17 +1,77 @@
 # Heuchera ancestral niche analyses
 
 ## Scripts in main directory
-`projections_binned_ancestralreconstruction.py` performs the range predictions on a per-node basis. 
+Scripts written in python3 should be run in bash.
 
-`date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. 
+1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. 
 
-`weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability.
 
-`trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species.
+2. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. 
+   
+    Example: 
+    ```
+    ./weight_projection_by_date_probability.py dating_histograms.csv 
+    ```
+   
 
-`annotate_maximum_density.py` annotates trees by the single value with maximum probability density. In the case of ties one is arbitrarily taken.
+
+
+3. `projections_binned_ancestralreconstruction.py` performs the range predictions on a per-node basis.  
+    Example: 
+    ```
+    ./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
+    ````
+
+
+4. `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species. 
+    
+    Example:
+    ```
+    mkdir combined_normalized
+    for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort | uniq`; do
+     ./trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
+    done
+    ```
+
+5. `annotate_maximum_density.py` annotates trees by the single value with maximum probability density. In the case of ties one is arbitrarily taken. 
+
+    Example: 
+    ```
+    for f in out_*.tre; do
+    g=`echo ${f} | sed 's/\.tre//g'`
+    ./annotate_maximum_density.py ${f} ${g}.maxdensity.tre
+    done
+    ```
 
 All scripts contain usage examples in header comments. 
+
+## Setup  
+```     
+Directory/   
+├── projection   
+|	├── {taxon}.Bio1_{date}.tifout_table_BIOCLIM_1.tif   
+|	└──...   
+├── ancestral_reconstruction_tables   
+|	├── out_table_BIOCLIM_1.txt   
+|	└── ...   
+├── projected_weighted (from weight_projection_by_date_probability.py)   
+|	├── {taxon}.bio1_{date}.tif   
+|	└── ...   
+├── BIOCLIM_1   
+|	├──   
+|	└── ...   
+├── ShellyFinal_NovemberLayers_2019/bio1_final   
+|	└── \*\.tif (layers generated with paleogenerate)   
+├──  combined_normalized (from trim_sum_and_normalize_projections.py)   
+|	└── ${i}.combined.tif    
+├── mcmc.txt   
+├── dating_histograms.csv (from date_histograms_from_mcmctree.r)   
+├── annotate_maximum_density.py   
+├── trim_sum_and_normalize_projections.py   
+├── projections_binned_ancestralreconstruction.py   
+├── weight_projection_by_date_probability.py   
+└── date_histograms_from_mcmctree.r   
+```
 
 ## Subfolders
 `ancestral_reconstruction` folders contain trees with the ancestral reconstruction result (in BEAST-style format) and plots of both extant and ancestral reconstruction histograms. There is a folder for each of the ASTRAL and concatenation topologies. Plots of histograms are blue for the ML result, and red and green representing +- standard error.
