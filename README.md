@@ -5,23 +5,20 @@ Scripts written in python3 should be run in bash. The ancestral reconstruction s
 
 1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. Run with the MCMC as mcmc.txt in the working directory. 
 
-
-3. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
+2. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
     Example: 
     ```
     ./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./PALEOCLIMATE_LAYERS/bio1_final/*.tif
     ````
 
-
-2. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. Projections should be in a folder called "projected". Modify the file path to 
+3. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. Projections should be in a folder called "projected". Filepaths should reflect output of #2 above.
    
     Example: 
     ```
     ./weight_projection_by_date_probability.py dating_histograms.csv 
     ```
    
-
-4. `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species. 
+4. `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species.
     
     Example:
     ```
@@ -31,7 +28,7 @@ Scripts written in python3 should be run in bash. The ancestral reconstruction s
     done
     ```
 
-5. `annotate_maximum_density.py` annotates trees by the single value with maximum probability density. In the case of ties one is arbitrarily taken. 
+5. `annotate_maximum_density.py` annotates trees by the single value with maximum probability density. This is used for color plotting. In the case of ties one is arbitrarily taken. 
 
     Example: 
     ```
