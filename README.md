@@ -55,7 +55,7 @@ Directory/
 ├── BIOCLIM_1   
 |	├──   
 |	└── ...   
-├── ShellyFinal_NovemberLayers_2019/bio1_final   
+├── PALEOCLIMATE_LAYERS/bio1_final  
 |	└── \*\.tif (layers generated with paleogenerate)   
 ├──  combined_normalized (from trim_sum_and_normalize_projections.py)   
 |	└── ${i}.combined.tif    
