@@ -1,27 +1,25 @@
 # Heuchera ancestral niche analyses
 
 ## Scripts in main directory
-Scripts written in python3 should be run in bash.
+Scripts written in python3 should be run in bash. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
 
-1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. 
+1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. Run with the MCMC as mcmc.txt in the working directory. 
 
 
-2. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. 
+3. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
+    Example: 
+    ```
+    ./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./PALEOCLIMATE_LAYERS/bio1_final/*.tif
+    ````
+
+
+2. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. Projections should be in a folder called "projected". Modify the file path to 
    
     Example: 
     ```
     ./weight_projection_by_date_probability.py dating_histograms.csv 
     ```
    
-
-
-
-3. `projections_binned_ancestralreconstruction.py` performs the range predictions on a per-node basis.  
-    Example: 
-    ```
-    ./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
-    ````
-
 
 4. `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species. 
     
