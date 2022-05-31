@@ -4,10 +4,10 @@ Scripts written in python3 should be run in bash per below. The ancestral recons
 ## Ancestral niche analyses
 ### Install BiotaphyPy
 ```
-#git clone https://github.com/biotaphy/BiotaPhyPy
-#cd BiotaPhyPy/
-#python setup.py install
-#cd ..
+git clone https://github.com/biotaphy/BiotaPhyPy
+cd BiotaPhyPy/
+python setup.py install
+cd ..
 ```
 
 ### Run ancestral niche reconstruction in a loop, one iteration per variable
