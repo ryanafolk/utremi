@@ -1,8 +1,26 @@
 # Heuchera ancestral niche analyses
+Scripts written in python3 should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
 
-## Scripts in main directory
-Scripts written in python3 should be run in bash. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
+## Ancestral niche analyses
+### Install BiotaphyPy
+```
+#git clone https://github.com/biotaphy/BiotaPhyPy
+#cd BiotaPhyPy/
+#python setup.py install
+#cd ..
+```
 
+### Run ancestral niche reconstruction in a loop, one iteration per variable
+```
+for f in ./pnos/*.dropped; do
+g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
+echo ${g}
+mkdir plots_${g}
+./BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
+done
+```
+
+## Downstream analyses
 1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. Run with the MCMC as mcmc.txt in the working directory. 
 
 2. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
