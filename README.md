@@ -16,7 +16,7 @@ for f in ./pnos/*.dropped; do
 g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
 echo ${g}
 mkdir plots_${g}
-./BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
+python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
 done
 ```
 
