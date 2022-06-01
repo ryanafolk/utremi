@@ -1,6 +1,48 @@
 # Heuchera ancestral niche analyses
 The quoted code should be run in bash. Ensure that paths of output from each step are not being messed with. Some paths are hard-coded in scripts and should be changed as noted. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
 
+## Setup  
+```     
+Directory/   
+├── data
+|	├── astral_mcmctree_rep3.tre (tree file - dated)
+|	├── mcmc.txt    
+|	└──...   
+├── pnos
+|	├──
+|	└── ...   
+├── results
+|	└── 
+├── ancestral_reconstruction_astral
+├── ancestral_projection_astral
+├── projected/
+|	├──  \*\.tif
+|	└── ...
+├── scripts
+|	├──  dating_histograms.csv (from date_histograms_from_mcmctree.r)   
+|	├──   annotate_maximum_density.py   
+|	├──   trim_sum_and_normalize_projections.py   
+|	├──   projections_binned_ancestralreconstruction.py   
+|	├──   weight_projection_by_date_probability.py   
+|	└──   date_histograms_from_mcmctree.r   
+```
+
+## Subfolders
+### `data`
+Tree and MCMCtree output.
+
+### `pnos`
+PNO files in the expected format.
+
+### `scripts`
+Python and R scripts.
+
+### `results`
+`ancestral_reconstruction` folders contain paper results comprising trees with the ancestral reconstruction (in BEAST-style format) and plots of both extant and ancestral reconstruction histograms. There is a folder for each of the ASTRAL and concatenation topologies. Plots of histograms are blue for the ML result, and red and green representing +- standard error.
+
+`ancestral_projection` folders contain results comprising an animated GIF showing trends in habitat suitability from the Pleistocene to present based on mean annual temperature. There is a folder for each of the ASTRAL and concatenation topologies.
+
+
 ## Dependencies
 The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. A further incomplete list is:
 ```
@@ -81,46 +123,3 @@ for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort
 We end up with one TIF per time period, representing joint probabilities of occurrence for all species.
 
 All scripts contain usage examples in header comments. 
-
-## Setup  
-```     
-Directory/   
-├── projection   
-|	├── {taxon}.Bio1_{date}.tifout_table_BIOCLIM_1.tif   
-|	└──...   
-├── ancestral_reconstruction_tables   
-|	├── out_table_BIOCLIM_1.txt   
-|	└── ...   
-├── projected_weighted (from weight_projection_by_date_probability.py)   
-|	├── {taxon}.bio1_{date}.tif   
-|	└── ...   
-├── BIOCLIM_1   
-|	├──   
-|	└── ...   
-├── PALEOCLIMATE_LAYERS/bio1_final  
-|	└── \*\.tif (layers generated with paleogenerate)   
-├──  combined_normalized (from trim_sum_and_normalize_projections.py)   
-|	└── ${i}.combined.tif    
-├── mcmc.txt   
-├── dating_histograms.csv (from date_histograms_from_mcmctree.r)   
-├── annotate_maximum_density.py   
-├── trim_sum_and_normalize_projections.py   
-├── projections_binned_ancestralreconstruction.py   
-├── weight_projection_by_date_probability.py   
-└── date_histograms_from_mcmctree.r   
-```
-
-## Subfolders
-### `data`
-Tree and MCMCtree output.
-
-### `pnos`
-PNO files in the expected format.
-
-### `scripts`
-Python and R scripts.
-
-### `results`
-`ancestral_reconstruction` folders contain paper results comprising trees with the ancestral reconstruction (in BEAST-style format) and plots of both extant and ancestral reconstruction histograms. There is a folder for each of the ASTRAL and concatenation topologies. Plots of histograms are blue for the ML result, and red and green representing +- standard error.
-
-`ancestral_projection` folders contain results comprising an animated GIF showing trends in habitat suitability from the Pleistocene to present based on mean annual temperature. There is a folder for each of the ASTRAL and concatenation topologies.
