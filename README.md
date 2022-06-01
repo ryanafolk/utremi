@@ -30,12 +30,16 @@ done
 ```
 cd ..
 cd ancestral_projection_astral
-1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. Run with the MCMC as mcmc.txt in the working directory. 
+# Generates dating histograms from MCMCtree output. Note the path to the mcmc.txt file output by this package is hard-coded on line 2 and should be updated as appropriate.
+R CMD BATCH date_histograms_from_mcmctree.r 
+# A file called dating_histograms.csv should appear in the working directory
+
+./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./PALEOCLIMATE_LAYERS/bio1_final/*.tif
 
 2. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
     Example: 
     ```
-    ./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./PALEOCLIMATE_LAYERS/bio1_final/*.tif
+    
     ````
 
 3. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. Projections should be in a folder called "projected". Filepaths should reflect output of #2 above.
