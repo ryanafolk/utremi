@@ -14,7 +14,7 @@ mv *.py *.r mkdir ancestral_projection_astral
 ```
 
 ## Ancestral niche analyses
-### Install BiotaphyPy
+### 1. Install BiotaphyPy
 ```
 cd ancestral_reconstruction_astral
 git clone https://github.com/biotaphy/BiotaPhyPy
@@ -24,7 +24,7 @@ cd ..
 ```
 Ensure the cloned repository remains in the working directory for the next step.
 
-### Run ancestral niche reconstruction in a loop, one iteration per variable
+### 2. Run ancestral niche reconstruction in a loop, one iteration per variable
 ```
 for f in ./pnos/*.dropped; do
     g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
@@ -34,7 +34,7 @@ for f in ./pnos/*.dropped; do
     done
 ```
 
-### Annotate trees by the single bin value with maximum probability density
+### 3. Annotate trees by the single bin value with maximum probability density
 This is used for color plotting. In the case of ties one is arbitrarily taken.
 ```
 for f in out_*.tre; do
@@ -69,7 +69,7 @@ python3 weight_projection_by_date_probability.py dating_histograms.csv
 # There should now be yet more TIFs in a folder called projected_weighted
 ```
    
-### Trim the projections to the study area, normalize histogram area, and combine across species.  
+### 4. Trim the projections to the study area, normalize histogram area, and combine across species.  
 ```
 mkdir combined_normalized
 for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort | uniq`; do
