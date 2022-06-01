@@ -31,7 +31,8 @@ for f in ./pnos/*.dropped; do
     done
 ```
 
-### Annotate trees by the single bin value with maximum probability density. This is used for color plotting. In the case of ties one is arbitrarily taken
+### Annotate trees by the single bin value with maximum probability density
+This is used for color plotting. In the case of ties one is arbitrarily taken.
 ```
 for f in out_*.tre; do
     g=`echo ${f} | sed 's/\.tre//g'`
