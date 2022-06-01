@@ -19,55 +19,55 @@ Ensure the cloned repository remains in the working directory for the next step.
 ### Run ancestral niche reconstruction in a loop, one iteration per variable
 ```
 for f in ./pnos/*.dropped; do
-g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
-echo ${g}
-mkdir plots_${g}
-python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
-done
-```
-
-## Downstream analyses
-```
-cd ..
-cd ancestral_projection_astral
-# Generates dating histograms from MCMCtree output. Note the path to the mcmc.txt file output by this package is hard-coded on line 2 and should be updated as appropriate.
-R CMD BATCH date_histograms_from_mcmctree.r 
-# A file called dating_histograms.csv should appear in the working directory
-
-./projections_binned_ancestralreconstruction.py ./ancestral_reconstruction_tables/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./PALEOCLIMATE_LAYERS/bio1_final/*.tif
-
-2. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
-    Example: 
-    ```
-    
-    ````
-
-3. `weight_projection_by_date_probability.py` takes the output of the projection and date histogram scripts to weight projections by posterior probability. Projections should be in a folder called "projected". Filepaths should reflect output of #2 above.
-   
-    Example: 
-    ```
-    ./weight_projection_by_date_probability.py dating_histograms.csv 
-    ```
-   
-4. `trim_sum_and_normalize_projections.py` trims the projections to the study area, normalizes histogram area, and combines across species.
-    
-    Example:
-    ```
-    mkdir combined_normalized
-    for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort | uniq`; do
-     ./trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
+    g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
+    echo ${g}
+    mkdir plots_${g}
+    python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
     done
-    ```
+```
 
-5. `annotate_maximum_density.py` annotates trees by the single value with maximum probability density. This is used for color plotting. In the case of ties one is arbitrarily taken. 
-
-    Example: 
-    ```
-    for f in out_*.tre; do
+### Annotate trees by the single bin value with maximum probability density. This is used for color plotting. In the case of ties one is arbitrarily taken
+```
+for f in out_*.tre; do
     g=`echo ${f} | sed 's/\.tre//g'`
     ./annotate_maximum_density.py ${f} ${g}.maxdensity.tre
     done
-    ```
+```
+
+
+## Downstream analyses
+### 1. Generate histograms representing dating uncertainty
+Generates dating histograms from MCMCtree output. Note the path to the mcmc.txt file output by this package is hard-coded on line 2 and should be updated as appropriate.
+```
+cd ..
+cd ancestral_projection_astral
+R CMD BATCH date_histograms_from_mcmctree.r 
+# A file called dating_histograms.csv should appear in the working directory
+```
+
+### 2. Perform geographic range projections on paleoclimate data
+```
+python3 projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral_testrun/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
+mkdir projected
+mv *tifout*.tif ./projected/
+# There should now be lots of tifs in a folder called projected
+```
+
+### 3. Weight projections by posterior probability of occurrence date
+File paths should reflect output of #1 and #2 above and should not be messed with just yet.  
+```
+python3 weight_projection_by_date_probability.py dating_histograms.csv 
+# There should now be yet more tifs in a folder called projected_weighted
+```
+   
+### Trim the projections to the study area, normalize histogram area, and combine across species.  
+```
+mkdir combined_normalized
+for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort | uniq`; do
+    python3 trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
+    done
+```
+
 
 All scripts contain usage examples in header comments. 
 
