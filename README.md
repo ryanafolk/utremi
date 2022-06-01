@@ -4,6 +4,8 @@ Scripts should be run in bash per below. The ancestral reconstruction should be 
 ## Set up directory structure
 ```
 mkdir ancestral_reconstruction_astral
+mv annotate_maximum_density.py ancestral_reconstruction_astral
+
 mkdir ancestral_projection_astral
 mv *.py *.r mkdir ancestral_projection_astral
 ```
