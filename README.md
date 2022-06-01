@@ -1,5 +1,5 @@
 # Heuchera ancestral niche analyses
-Scripts should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`. Some paths are hard-coded. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
+The quoted code should be run in bash. Ensure that paths of output from each step are not being messed with. Some paths are hard-coded in scripts and should be changed as noted. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
 
 ## Dependencies
 The python scripts have various dependencies that can be queried by attempting to run the scripts. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path.
