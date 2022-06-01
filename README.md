@@ -107,6 +107,16 @@ Directory/
 ```
 
 ## Subfolders
+### `data`
+Tree and MCMCtree output.
+
+### `pnos`
+PNO files in the expected format.
+
+### `scripts`
+Python and R scripts.
+
+### `results`
 `ancestral_reconstruction` folders contain paper results comprising trees with the ancestral reconstruction (in BEAST-style format) and plots of both extant and ancestral reconstruction histograms. There is a folder for each of the ASTRAL and concatenation topologies. Plots of histograms are blue for the ML result, and red and green representing +- standard error.
 
 `ancestral_projection` folders contain results comprising an animated GIF showing trends in habitat suitability from the Pleistocene to present based on mean annual temperature. There is a folder for each of the ASTRAL and concatenation topologies.
