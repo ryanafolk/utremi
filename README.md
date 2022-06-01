@@ -56,14 +56,14 @@ R CMD BATCH date_histograms_from_mcmctree.r
 python3 projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral_testrun/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
 mkdir projected
 mv *tifout*.tif ./projected/
-# There should now be lots of tifs in a folder called projected
+# There should now be lots of TIFs in a folder called projected
 ```
 
 ### 3. Weight projections by posterior probability of occurrence date
 File paths should reflect output of #1 and #2 above and should not be messed with just yet.  
 ```
 python3 weight_projection_by_date_probability.py dating_histograms.csv 
-# There should now be yet more tifs in a folder called projected_weighted
+# There should now be yet more TIFs in a folder called projected_weighted
 ```
    
 ### Trim the projections to the study area, normalize histogram area, and combine across species.  
@@ -73,7 +73,7 @@ for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort
     python3 trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
     done
 ```
-
+We end up with one TIF per time period, representing joint probabilities of occurrence for all species.
 
 All scripts contain usage examples in header comments. 
 
