@@ -1,5 +1,5 @@
 # Note on node labeling. Binned ancestral reconstruction code will be off by one because the root does not get a numeric label. Otherwise the node labels will match between R numbering, MCMCtree, and the binned reconstruction script as long as the tree file is the same.
-table = read.table("./MCMC_astral_output/mcmc.txt", sep = "\t", header = TRUE)
+table = read.table("./data/mcmc.txt", sep = "\t", header = TRUE)
 
 # Remove irrelevant tailing columns
 x = ncol(table) - 3 
