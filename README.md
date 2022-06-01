@@ -9,6 +9,7 @@ cd BiotaPhyPy/
 python setup.py install
 cd ..
 ```
+Ensure the cloned repository remains in the working directory for the next step.
 
 ### Run ancestral niche reconstruction in a loop, one iteration per variable
 ```
