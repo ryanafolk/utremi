@@ -1,0 +1,847 @@
+ratematrix_diversification_crassulaceae <- getRateThroughTimeMatrix(edata_diversification, node = fastMRCA(tree, "Crassula_helmsii", "Sedum_album")) # Crassulaceae#
+ratematrix_environment_crassulaceae <- getRateThroughTimeMatrix(edata_environment, node = fastMRCA(tree, "Crassula_helmsii", "Sedum_album")) # Crassulaceae#
+ratematrix_phenotype_crassulaceae <- getRateThroughTimeMatrix(edata_phenotype, node = fastMRCA(tree.pheno, "Crassula_helmsii", "Sedum_album")) # Crassulaceae#
+#
+# crassulaceae#
+ratematrix_phenotype_crassulaceae_transformed = ratematrix_phenotype_crassulaceae#
+ratematrix_phenotype_crassulaceae_transformed[[1]] = (ratematrix_phenotype_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#0000FF", xlim = c(80, 0), ylim = c(0,1))#
+#
+ratematrix_environment_crassulaceae_transformed = ratematrix_environment_crassulaceae#
+ratematrix_environment_crassulaceae_transformed[[1]] = (ratematrix_environment_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", xlim = c(80, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_crassulaceae_transformed = ratematrix_diversification_crassulaceae#
+ratematrix_diversification_crassulaceae_transformed[[1]] = (ratematrix_diversification_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#00FF00", xlim = c(80, 0), ylim = c(0,1), add = TRUE)
+# Stem age of Crassulaceae#
+max(nodeHeights(tree)) - fastHeight(tree, "Adromischus_roaneanus", "Tetracarpaea_tasmanica")
+# Crown age of Saxifragaceae alliance#
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Itea_virginica")
+max(nodeHeights(tree)) - fastHeight(tree, "Crassula_helmsii", "Sedum_album")
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Heuchera_mexicana")
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Itea_virginica")
+# UNLADDERIZED edata#
+#
+### Subset edata object and get best configuration#
+#
+# Saxifragaceae#
+#
+edata_diversification.saxifragaceae = subtreeBAMM(edata_diversification, tips = NULL, node = fastMRCA(tree, "Saxifraga_stolonifera", "Heuchera_mexicana")) # This was corrected#
+edata_environment.saxifragaceae = subtreeBAMM(edata_environment, tips = NULL, node = fastMRCA(tree, "Saxifraga_stolonifera", "Heuchera_mexicana")) # This was corrected#
+edata_phenotype.saxifragaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.pheno, "Saxifraga_stolonifera", "Heuchera_mexicana"))#
+#
+best_diversification.saxifragaceae <- getBestShiftConfiguration(edata_diversification.saxifragaceae, expectedNumberOfShifts=1)#
+best_environment.saxifragaceae <- getBestShiftConfiguration(edata_environment.saxifragaceae, expectedNumberOfShifts=1)#
+best_phenotype.saxifragaceae <- getBestShiftConfiguration(edata_phenotype.saxifragaceae, expectedNumberOfShifts=1)#
+#
+# Crassulaceae#
+#
+edata_diversification.crassulaceae = subtreeBAMM(edata_diversification, tips = NULL, node = fastMRCA(tree, "Crassula_helmsii", "Sedum_album")) # This was corrected#
+edata_environment.crassulaceae = subtreeBAMM(edata_environment, tips = NULL, node = fastMRCA(tree, "Crassula_helmsii", "Sedum_album")) # This was corrected#
+edata_phenotype.crassulaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.pheno, "Crassula_helmsii", "Sedum_album")) # This was corrected#
+#
+best_diversification.crassulaceae <- getBestShiftConfiguration(edata_diversification.crassulaceae, expectedNumberOfShifts=1)#
+best_environment.crassulaceae <- getBestShiftConfiguration(edata_environment.crassulaceae, expectedNumberOfShifts=1)#
+best_phenotype.crassulaceae <- getBestShiftConfiguration(edata_phenotype.crassulaceae, expectedNumberOfShifts=1)#
+#
+# Saxifragaceae alliance#
+#
+edata_diversification.saxifragaceae_alliance = subtreeBAMM(edata_diversification, tips = NULL, node = fastMRCA(tree, "Saxifraga_stolonifera", "Itea_virginica"))#
+edata_environment.saxifragaceae_alliance = subtreeBAMM(edata_environment, tips = NULL, node = fastMRCA(tree, "Saxifraga_stolonifera", "Itea_virginica"))#
+edata_phenotype.saxifragaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.pheno, "Saxifraga_stolonifera", "Itea_virginica"))#
+#
+best_diversification.saxifragaceae_alliance <- getBestShiftConfiguration(edata_diversification.saxifragaceae_alliance, expectedNumberOfShifts=1)#
+best_environment.saxifragaceae_alliance <- getBestShiftConfiguration(edata_environment.saxifragaceae_alliance, expectedNumberOfShifts=1)#
+best_phenotype.saxifragaceae_alliance <- getBestShiftConfiguration(edata_phenotype.saxifragaceae_alliance, expectedNumberOfShifts=1)#
+# Note -- to get the shift times, get the best object (best <- getBestShiftConfiguration(edata, expectedNumberOfShifts=1))#
+# Then, access the nodes and times by: best$eventData[[1]]#
+# Note there will be one extra node for the root.#
+#
+# Check node numbering like so, using the trees in the rData BAMM packages:#
+plot(tree, show.tip.label = TRUE, cex = 0.01, edge.width = 0.25); nodelabels(frame="none",adj=c(1.1,-0.4), cex = .1)#
+#
+# Extract shift times#
+#
+eventData_diversification.saxifragaceae = data.frame(best_diversification.saxifragaceae[[10]])#
+eventData_environment.saxifragaceae = data.frame(best_environment.saxifragaceae[[10]])#
+eventData_phenotype.saxifragaceae = data.frame(best_phenotype.saxifragaceae[[10]])#
+#
+eventData_diversification.crassulaceae = data.frame(best_diversification.crassulaceae[[10]])#
+eventData_environment.crassulaceae = data.frame(best_environment.crassulaceae[[10]])#
+eventData_phenotype.crassulaceae = data.frame(best_phenotype.crassulaceae[[10]])#
+#
+eventData_diversification.saxifragaceae_alliance = data.frame(best_diversification.saxifragaceae_alliance[[10]])#
+eventData_environment.saxifragaceae_alliance = data.frame(best_environment.saxifragaceae_alliance[[10]])#
+eventData_phenotype.saxifragaceae_alliance = data.frame(best_phenotype.saxifragaceae_alliance[[10]])#
+#
+# Adjust node height to node depth#
+#
+# Stem age of Saxifragaceae#
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Ribes_triste")#
+# Stem age of Crassulaceae#
+max(nodeHeights(tree)) - fastHeight(tree, "Adromischus_roaneanus", "Tetracarpaea_tasmanica")#
+# Stem age of Saxifragaceae alliance#
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Cynomorium_songaricum")#
+#
+# Crown age of Saxifragaceae#
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Heuchera_mexicana")#
+# Crown age of Crassulaceae#
+max(nodeHeights(tree)) - fastHeight(tree, "Crassula_helmsii", "Sedum_album")#
+# Crown age of Saxifragaceae alliance#
+max(nodeHeights(tree)) - fastHeight(tree, "Saxifraga_stolonifera", "Itea_virginica")#
+# Node check Saxifragaceae#
+fastMRCA(tree, "Saxifraga_stolonifera", "Heuchera_mexicana")#
+fastMRCA(tree.pheno, "Saxifraga_stolonifera", "Heuchera_mexicana")#
+#
+# Node check Crassulaceae#
+fastMRCA(tree, "Crassula_helmsii", "Sedum_album")#
+fastMRCA(tree.pheno, "Crassula_helmsii", "Sedum_album")#
+#
+# Node check Saxifragaceae alliance#
+fastMRCA(tree, "Saxifraga_stolonifera", "Itea_virginica")#
+fastMRCA(tree.pheno, "Saxifraga_stolonifera", "Itea_virginica")#
+#
+# These use crown ages#
+eventData_diversification.saxifragaceae$time = 69.52188 - eventData_diversification.saxifragaceae$time#
+eventData_environment.saxifragaceae$time = 69.52188 - eventData_environment.saxifragaceae$time#
+eventData_phenotype.saxifragaceae$time = 69.52188 - eventData_phenotype.saxifragaceae$time#
+#
+eventData_diversification.crassulaceae$time = 77.41636 -  eventData_diversification.crassulaceae$time#
+eventData_environment.crassulaceae$time = 77.41636 - eventData_environment.crassulaceae$time#
+eventData_phenotype.crassulaceae$time = 77.41636 - eventData_phenotype.crassulaceae$time#
+#
+eventData_diversification.saxifragaceae_alliance$time = 100.9034 - eventData_diversification.saxifragaceae_alliance$time#
+eventData_environment.saxifragaceae_alliance$time = 100.9034 - eventData_environment.saxifragaceae_alliance$time#
+eventData_phenotype.saxifragaceae_alliance$time = 100.9034 - eventData_phenotype.saxifragaceae_alliance$time#
+# Boxplots#
+#
+boxplot(eventData_diversification.saxifragaceae$time, eventData_environment.saxifragaceae$time, eventData_phenotype.saxifragaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")#
+#
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")#
+#
+boxplot(eventData_diversification.saxifragaceae_alliance$time, eventData_environment.saxifragaceae_alliance$time, eventData_phenotype.saxifragaceae_alliance$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+boxplot(eventData_diversification.saxifragaceae$time, eventData_environment.saxifragaceae$time, eventData_phenotype.saxifragaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+max(nodeHeights(tree)) - fastHeight(tree, "Crassula_helmsii", "Sedum_album")
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+boxplot(eventData_diversification.saxifragaceae_alliance$time, eventData_environment.saxifragaceae_alliance$time, eventData_phenotype.saxifragaceae_alliance$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+eventData_diversification.crassulaceae$time
+edata_environment.crassulaceae
+max(nodeHeights(tree)) - fastHeight(tree, "Crassula_helmsii", "Cynomorium_songaricum")
+# Crassulaceae alliance#
+#
+edata_diversification.crassulaceae_alliance = subtreeBAMM(edata_diversification, tips = NULL, node = fastMRCA(tree, "Crassula_helmsii", "Cynomorium_songaricum")) # This was corrected#
+edata_environment.crassulaceae_alliance = subtreeBAMM(edata_environment, tips = NULL, node = fastMRCA(tree, "Crassula_helmsii", "Cynomorium_songaricum")) # This was corrected#
+edata_phenotype.crassulaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.pheno, "Crassula_helmsii", "Cynomorium_songaricum")) # This was corrected#
+#
+best_diversification.crassulaceae_alliance <- getBestShiftConfiguration(edata_diversification.crassulaceae_alliance, expectedNumberOfShifts=1)#
+best_environment.crassulaceae_alliance <- getBestShiftConfiguration(edata_environment.crassulaceae_alliance, expectedNumberOfShifts=1)#
+best_phenotype.crassulaceae_alliance <- getBestShiftConfiguration(edata_phenotype.crassulaceae_alliance, expectedNumberOfShifts=1)
+boxplot(eventData_diversification.crassulaceae_alliance$time, eventData_environment.crassulaceae_alliance$time, eventData_phenotype.crassulaceae_alliance$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+eventData_diversification.crassulaceae_alliance = data.frame(best_diversification.crassulaceae_alliance[[10]])#
+eventData_environment.crassulaceae_alliance = data.frame(best_environment.crassulaceae_alliance[[10]])#
+eventData_phenotype.crassulaceae_alliance = data.frame(best_phenotype.crassulaceae_alliance[[10]])
+eventData_diversification.crassulaceae_alliance$time = 105.0105 -  eventData_diversification.crassulaceae_alliance$time#
+eventData_environment.crassulaceae_alliance$time = 105.0105 - eventData_environment.crassulaceae_alliance$time#
+eventData_phenotype.crassulaceae_alliance$time = 105.0105 - eventData_phenotype.crassulaceae_alliance$time
+boxplot(eventData_diversification.crassulaceae_alliance$time, eventData_environment.crassulaceae_alliance$time, eventData_phenotype.crassulaceae_alliance$time, names=c("Net diversification rate shifts", "Niche rate shifts", "Phenotype rate shifts"), ylab = "Time (mya)")
+load("/Volumes/My Passport for Mac/Saxifragales_work/edata_objects.UNLADDERIZED.rData")
+ratematrix_diversification_hamamelidaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2842) # Hamamelidaceae#
+atematrix_diversification_grossulariaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2215) # Grossulariaceae#
+ratematrix_diversification_saxifragaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2200) # Saxifragaceae#
+ratematrix_diversification_crassulaceae <- getRateThroughTimeMatrix(edata_diversification, node = 1460) # Crassulaceae#
+ratematrix_diversification_haloragaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2099) # Haloragaceae
+library(BAMMtolls)
+library(BAMMtools)
+ratematrix_diversification_hamamelidaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2842) # Hamamelidaceae#
+atematrix_diversification_grossulariaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2215) # Grossulariaceae#
+ratematrix_diversification_saxifragaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2200) # Saxifragaceae#
+ratematrix_diversification_crassulaceae <- getRateThroughTimeMatrix(edata_diversification, node = 1460) # Crassulaceae#
+ratematrix_diversification_haloragaceae <- getRateThroughTimeMatrix(edata_diversification, node = 2099) # Haloragaceae
+ratematrix_environment_hamamelidaceae <- getRateThroughTimeMatrix(edata_environment, node = 2842) # Hamamelidaceae#
+atematrix_environment_grossulariaceae <- getRateThroughTimeMatrix(edata_environment, node = 2215) # Grossulariaceae#
+ratematrix_environment_saxifragaceae <- getRateThroughTimeMatrix(edata_environment, node = 2200) # Saxifragaceae#
+ratematrix_environment_crassulaceae <- getRateThroughTimeMatrix(edata_environment, node = 1460) # Crassulaceae#
+ratematrix_environment_haloragaceae <- getRateThroughTimeMatrix(edata_environment, node = 2099) # Haloragaceae#
+plotRateThroughTime(ratematrix_environment_hamamelidaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_environment_grossulariaceae, opacity = 0, avgCol="#0000FF",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_environment_saxifragaceae, opacity = 0, avgCol="#7E0080",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_environment_crassulaceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_environment_haloragaceae, opacity = 0, avgCol="#AC0052",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+ratematrix_phenotype_hamamelidaceae <- getRateThroughTimeMatrix(edata_phenotype, node = 2715) # Hamamelidaceae#
+atematrix_phenotype_grossulariaceae <- getRateThroughTimeMatrix(edata_phenotype, node = 2135) # Grossulariaceae#
+ratematrix_phenotype_saxifragaceae <- getRateThroughTimeMatrix(edata_phenotype, node = 2211) # Saxifragaceae#
+ratematrix_phenotype_crassulaceae <- getRateThroughTimeMatrix(edata_phenotype, node = 1393) # Crassulaceae#
+ratematrix_phenotype_haloragaceae <- getRateThroughTimeMatrix(edata_phenotype, node = 2023) # Haloragaceae#
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_grossulariaceae, opacity = 0, avgCol="#0000FF",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_saxifragaceae, opacity = 0, avgCol="#7E0080",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_crassulaceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_haloragaceae, opacity = 0, avgCol="#AC0052",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)
+ratematrix_diversification_crassulaceae <- getRateThroughTimeMatrix(edata_diversification, node = 1460) # Crassulaceae
+plotRateThroughTime(ratematrix_diversification_crassulaceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)
+plotRateThroughTime(ratematrix_diversification_haloragaceae, opacity = 0, avgCol="#AC0052",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 0.6), add = TRUE)
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_diversification_crassulaceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_diversification_saxifragaceae, opacity = 0, avgCol="#7E0080",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_diversification_grossulariaceae, opacity = 0, avgCol="#0000FF",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(atematrix_diversification_grossulariaceae, opacity = 0, avgCol="#0000FF",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_diversification_haloragaceae, opacity = 0, avgCol="#AC0052",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_diversification_hamamelidaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6))
+plotRateThroughTime(ratematrix_phenotype_crassulaceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 3))
+plotRateThroughTime(ratematrix_phenotype_saxifragaceae, opacity = 0, avgCol="#7E0080", ylim = c(0, 3))
+plotRateThroughTime(ratematrix_phenotype_crassulaceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 3), add=TRUE)
+plotRateThroughTime(ratematrix_phenotype_haloragaceae, opacity = 0, avgCol="#AC0052", ylim = c(0, 3))
+plotRateThroughTime(ratematrix_phenotype_grossulariaceae, opacity = 0, avgCol="#0000FF", ylim = c(0, 3))
+plotRateThroughTime(atematrix_phenotype_grossulariaceae, opacity = 0, avgCol="#0000FF", ylim = c(0, 3))
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 3))
+plotRateThroughTime(atematrix_environment_grossulariaceae, opacity = 0, avgCol="#0000FF", ylim = c(0, 3e6))
+plotRateThroughTime(ratematrix_environment_saxifragaceae, opacity = 0, avgCol="#7E0080", ylim = c(0, 3e6))
+plotRateThroughTime(ratematrix_environment_crassulaceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 3e6))
+plotRateThroughTime(ratematrix_environment_haloragaceae, opacity = 0, avgCol="#AC0052", ylim = c(0, 3e6))
+plotRateThroughTime(ratematrix_environment_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 3e6))
+library(rgif)
+library(rgbif)
+item = occ_search(scientificName = "Heuchera americana", return = "data", limit = 500)
+item
+item$decimalLatitude
+item$decimalLongitude
+item = occ_search(scientificName = "Heuchera americana", return = "data", limit = 500, hasCoordinate = TRUE)
+item
+item$decimalLatitude
+item_reduced = subset(x, select = c(name, decimalLatitude, decimalLongitude))
+item_reduced = subset(item, select = c(name, decimalLatitude, decimalLongitude))
+item_reduced
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (decimalLongitude != 0)]
+item_reduced
+item_reduced$decimalLatitude
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (decimalLongitude != 0)]
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (item_reduced$decimalLongitude != 0)]
+item_reduced
+data.frame(item_reduced)
+item_reduced = data.frame(item_reduced)
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (item_reduced$decimalLongitude != 0)]
+item_reduced = subset(item, select = c(name, decimalLatitude, decimalLongitude))
+typeof(item_reduced)
+typeof(item)
+item = data.frame(item)
+item
+item$decimalLatitude
+item_reduced = subset(item, select = c(name, decimalLatitude, decimalLongitude))
+item_reduced
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (item_reduced$decimalLongitude != 0)]
+item_reduced$decimalLatitude
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (item_reduced$decimalLongitude != 0)]
+item_reduced_cleaned = item_reduced[(item_reduced$decimalLatitude != 0) & (item_reduced$decimalLongitude != 0),]
+item_reduced_cleaned
+library(phytools)
+pbtree(b=2, d = 0.5, nsim = 5, t = 10)
+trees = pbtree(b=2, d = 0.5, nsim = 5, t = 10)
+library(phytools)
+treeold = read.tree("~/Desktop/Saxifragales_ecoanalyses/REDO_treepl/phlawd_ultrametric_moreconstraints/intree.dated.crossvalidated.tre")
+ltt(treeold)
+treenew = read.tree("~/Desktop/Saxifragales_ecoanalyses/REDO_treepl_BEAST_interpol/intree.dated.crossvalidated.tre")
+ltt(treenew)
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype.Rdata")
+ls()
+edata_phenotype
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype_50percentburnin.Rdata")
+edata_pheno
+edata_phenotype <- edata_pheno
+tree.phenotype <- tree.pheno
+save(edata_phenotype, tree.phenotype, file = "/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype_50percentburnin.Rdata")
+# Taken from http://www.sthda.com/english/wiki/text-mining-and-word-cloud-fundamentals-in-r-5-simple-steps-you-should-know#
+#
+library("tm")#
+library("SnowballC")#
+library("wordcloud")#
+library("RColorBrewer")#
+#
+text <- readLines(file.choose())#
+#
+# Load the data as a corpus#
+docs <- Corpus(VectorSource(text))#
+#
+inspect(docs)#
+#
+# Remove special characters#
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, " ", x))#
+docs <- tm_map(docs, toSpace, "/")#
+docs <- tm_map(docs, toSpace, "@")#
+docs <- tm_map(docs, toSpace, "\\|")#
+#
+# Clean the text#
+# Convert the text to lower case#
+docs <- tm_map(docs, content_transformer(tolower))#
+# Remove numbers#
+docs <- tm_map(docs, removeNumbers)#
+# Remove english common stopwords#
+docs <- tm_map(docs, removeWords, stopwords("english"))#
+# Remove your own stop word#
+# specify your stopwords as a character vector#
+docs <- tm_map(docs, removeWords, c("however", "yet", "many", "relatively", "suggest", "suggests", "relative", "found", "several", "including", "especially", "across", "complete", "also", "based", "among", "basis", "using", "way", "known", "var", "moreover", "within", "provide", "well", "show", "since", "way", "often", "one", "two", "three", "may", "can", "use", "used", "utilize", "utilized", "still", "work")) #
+# Remove punctuations#
+docs <- tm_map(docs, removePunctuation)#
+# Eliminate extra white spaces#
+docs <- tm_map(docs, stripWhitespace)#
+# Text stemming#
+# docs <- tm_map(docs, stemDocument)#
+#
+# Frequency table (term-document matrix)#
+dtm <- TermDocumentMatrix(docs)#
+m <- as.matrix(dtm)#
+v <- sort(rowSums(m),decreasing=TRUE)#
+d <- data.frame(word = names(v),freq=v)#
+head(d, 10)#
+#
+# Build word cloud#
+dev.new(width=6, height=5)#
+set.seed(1234)#
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,#
+          max.words=200, random.order=FALSE, rot.per=0.35, #
+          colors=brewer.pal(8, "Dark2"))#
+# Find word correlations       #
+findAssocs(dtm, terms = "species", corlimit = 0.3)#
+findAssocs(dtm, terms = "data", corlimit = 0.3)
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype_50percentburnin_ladderized.Rdata")
+ratematrix_phenotype <- getRateThroughTimeMatrix(edata_phenotype_ladderized) # Calculating ahead of time avoids repeating calculations to adjust figure; still need to recalculate for different nodes
+library(BAMMtools)
+ratematrix_phenotype <- getRateThroughTimeMatrix(edata_phenotype) # Calculating ahead of time avoids repeating calculations to adjust figure; still need to recalculate for different nodes
+ratematrix_phenotype <- getRateThroughTimeMatrix(edata_phenotype_ladderized) # Calculating ahead of time avoids repeating calculations to adjust figure; still need to recalculate for different nodes
+dev.new(width=6, height=5)#
+averageline_phenotype = plotRateThroughTime(ratematrix_phenotype, plot = FALSE)$avg#
+plotRateThroughTime(ratematrix_phenotype,intervalCol="blue", avgCol="blue", ylim = c(0, max(averageline_phenotype)))
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype_50percentburnin_ladderized.Rdata")
+ratematrix_phenotype <- getRateThroughTimeMatrix(edata_phenotype_ladderized) # Calculating ahead of time avoids repeating calculations to adjust figure; still need to recalculate for different nodes#
+plotRateThroughTime(ratematrix_phenotype,intervalCol="red", avgCol="red")
+library(BAMMtools)
+ratematrix_phenotype <- getRateThroughTimeMatrix(edata_phenotype_ladderized) # Calculating ahead of time avoids repeating calculations to adjust figure; still need to recalculate for different nodes#
+plotRateThroughTime(ratematrix_phenotype,intervalCol="red", avgCol="red")
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_phenotype_NEWrep4_75percentburnin.Rdata")
+library(BAMMtools)
+edata_phenotype.saxifragaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Saxifraga_stolonifera", "Heuchera_mexicana"))#
+best_phenotype.saxifragaceae <- getBestShiftConfiguration(edata_phenotype.saxifragaceae, expectedNumberOfShifts=1)#
+#
+# Crassulaceae#
+#
+edata_phenotype.crassulaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Crassula_helmsii", "Sedum_album")) # This was corrected#
+best_phenotype.crassulaceae <- getBestShiftConfiguration(edata_phenotype.crassulaceae, expectedNumberOfShifts=1)#
+#
+# Saxifragaceae alliance#
+#
+edata_phenotype.saxifragaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Saxifraga_stolonifera", "Itea_virginica"))#
+best_phenotype.saxifragaceae_alliance <- getBestShiftConfiguration(edata_phenotype.saxifragaceae_alliance, expectedNumberOfShifts=1)#
+#
+# Crassulaceae alliance#
+#
+edata_phenotype.crassulaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Crassula_helmsii", "Cynomorium_songaricum")) # This was corrected#
+best_phenotype.crassulaceae_alliance <- getBestShiftConfiguration(edata_phenotype.crassulaceae_alliance, expectedNumberOfShifts=1)
+library(phytools)
+edata_phenotype.saxifragaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Saxifraga_stolonifera", "Heuchera_mexicana"))#
+best_phenotype.saxifragaceae <- getBestShiftConfiguration(edata_phenotype.saxifragaceae, expectedNumberOfShifts=1)#
+#
+# Crassulaceae#
+#
+edata_phenotype.crassulaceae = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Crassula_helmsii", "Sedum_album")) # This was corrected#
+best_phenotype.crassulaceae <- getBestShiftConfiguration(edata_phenotype.crassulaceae, expectedNumberOfShifts=1)#
+#
+# Saxifragaceae alliance#
+#
+edata_phenotype.saxifragaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Saxifraga_stolonifera", "Itea_virginica"))#
+best_phenotype.saxifragaceae_alliance <- getBestShiftConfiguration(edata_phenotype.saxifragaceae_alliance, expectedNumberOfShifts=1)#
+#
+# Crassulaceae alliance#
+#
+edata_phenotype.crassulaceae_alliance = subtreeBAMM(edata_phenotype, tips = NULL, node = fastMRCA(tree.phenotype, "Crassula_helmsii", "Cynomorium_songaricum")) # This was corrected#
+best_phenotype.crassulaceae_alliance <- getBestShiftConfiguration(edata_phenotype.crassulaceae_alliance, expectedNumberOfShifts=1)
+ls()
+save(best_phenotype.crassulaceae, best_phenotype.crassulaceae_alliance, best_phenotype.saxifragaceae, best_phenotype.saxifragaceae_alliance, edata_phenotype, edata_phenotype.crassulaceae, edata_phenotype.crassulaceae_alliance, edata_phenotype.saxifragaceae, edata_phenotype.saxifragaceae_alliance, file = "/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/subclade_shifttimes_phenotype.Rdata")
+rm(edata_phenotype)
+gc()
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/subclade_shifttimes_diversification_environment.Rdata")
+eventData_diversification.saxifragaceae = data.frame(best_diversification.saxifragaceae[[10]])#
+eventData_environment.saxifragaceae = data.frame(best_environment.saxifragaceae[[10]])#
+eventData_phenotype.saxifragaceae = data.frame(best_phenotype.saxifragaceae[[10]])#
+#
+eventData_diversification.crassulaceae = data.frame(best_diversification.crassulaceae[[10]])#
+eventData_environment.crassulaceae = data.frame(best_environment.crassulaceae[[10]])#
+eventData_phenotype.crassulaceae = data.frame(best_phenotype.crassulaceae[[10]])#
+#
+eventData_diversification.saxifragaceae_alliance = data.frame(best_diversification.saxifragaceae_alliance[[10]])#
+eventData_environment.saxifragaceae_alliance = data.frame(best_environment.saxifragaceae_alliance[[10]])#
+eventData_phenotype.saxifragaceae_alliance = data.frame(best_phenotype.saxifragaceae_alliance[[10]])#
+#
+eventData_diversification.crassulaceae_alliance = data.frame(best_diversification.crassulaceae_alliance[[10]])#
+eventData_environment.crassulaceae_alliance = data.frame(best_environment.crassulaceae_alliance[[10]])#
+e
+eventData_phenotype.crassulaceae_alliance = data.frame(best_phenotype.crassulaceae_alliance[[10]])
+eventData_diversification.saxifragaceae$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Saxifraga_stolonifera", "Heuchera_mexicana") - eventData_diversification.saxifragaceae$time#
+eventData_environment.saxifragaceae$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Saxifraga_stolonifera", "Heuchera_mexicana") - eventData_environment.saxifragaceae$time#
+eventData_phenotype.saxifragaceae$time = max(nodeHeights(tree.phenotype)) - fastHeight(tree.phenotype, "Saxifraga_stolonifera", "Heuchera_mexicana") - eventData_phenotype.saxifragaceae$time#
+#
+eventData_diversification.crassulaceae$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Crassula_helmsii", "Sedum_album") -  eventData_diversification.crassulaceae$time#
+eventData_environment.crassulaceae$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Crassula_helmsii", "Sedum_album") - eventData_environment.crassulaceae$time#
+eventData_phenotype.crassulaceae$time = max(nodeHeights(tree.phenotype)) - fastHeight(tree.phenotype, "Crassula_helmsii", "Sedum_album") - eventData_phenotype.crassulaceae$time#
+#
+eventData_diversification.saxifragaceae_alliance$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Saxifraga_stolonifera", "Itea_virginica") - eventData_diversification.saxifragaceae_alliance$time#
+eventData_environment.saxifragaceae_alliance$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Saxifraga_stolonifera", "Itea_virginica") - eventData_environment.saxifragaceae_alliance$time#
+eventData_phenotype.saxifragaceae_alliance$time = max(nodeHeights(tree.phenotype)) - fastHeight(tree.phenotype, "Saxifraga_stolonifera", "Itea_virginica") - eventData_phenotype.saxifragaceae_alliance$time#
+#
+eventData_diversification.crassulaceae_alliance$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Crassula_helmsii", "Cynomorium_songaricum") -  eventData_diversification.crassulaceae_alliance$time#
+eventData_environment.crassulaceae_alliance$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Crassula_helmsii", "Cynomorium_songaricum") - eventData_environment.crassulaceae_alliance$time#
+eventData_phenotype.crassulaceae_alliance$time = max(nodeHeights(tree.phenotype)) - fastHeight(tree.phenotype, "Crassula_helmsii", "Cynomorium_songaricum") - eventData_phenotype.crassulaceae_alliance$time
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_diversification.Rdata")
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/edata_environment.Rdata")
+ls()
+rm()edata_environment
+rm(edata_environment)
+rm(edata_diversification)
+eventData_diversification.saxifragaceae$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Saxifraga_stolonifera", "Heuchera_mexicana") - eventData_diversification.saxifragaceae$time#
+eventData_environment.saxifragaceae$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Saxifraga_stolonifera", "Heuchera_mexicana") - eventData_environment.saxifragaceae$time#
+#
+eventData_diversification.crassulaceae$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Crassula_helmsii", "Sedum_album") -  eventData_diversification.crassulaceae$time#
+eventData_environment.crassulaceae$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Crassula_helmsii", "Sedum_album") - eventData_environment.crassulaceae$time#
+#
+eventData_diversification.saxifragaceae_alliance$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Saxifraga_stolonifera", "Itea_virginica") - eventData_diversification.saxifragaceae_alliance$time#
+eventData_environment.saxifragaceae_alliance$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Saxifraga_stolonifera", "Itea_virginica") - eventData_environment.saxifragaceae_alliance$time#
+#
+eventData_diversification.crassulaceae_alliance$time = max(nodeHeights(tree.diversification)) - fastHeight(tree.diversification, "Crassula_helmsii", "Cynomorium_songaricum") -  eventData_diversification.crassulaceae_alliance$time#
+eventData_environment.crassulaceae_alliance$time = max(nodeHeights(tree.environment)) - fastHeight(tree.environment, "Crassula_helmsii", "Cynomorium_songaricum") - eventData_environment.crassulaceae_alliance$time
+dev.new(width=2.5, height=4.75)#
+boxplot(eventData_diversification.saxifragaceae$time, eventData_environment.saxifragaceae$time, eventData_phenotype.saxifragaceae$time, names=c("", "", ""), ylab = "Time before present (my)", col = c("chartreuse4", "darkorange", "blue"), main = "Saxifragaceae")
+dev.new(width=2.5, height=4.75)#
+boxplot(eventData_diversification.crassulaceae$time, eventData_environment.crassulaceae$time, eventData_phenotype.crassulaceae$time, names=c("", "", ""), ylab = "Time before present (my)", col = c("chartreuse4", "darkorange", "blue"), main = "Crassulaceae")
+dev.new(width=2.5, height=4.75)#
+boxplot(eventData_diversification.saxifragaceae_alliance$time, eventData_environment.saxifragaceae_alliance$time, eventData_phenotype.saxifragaceae_alliance$time, names=c("", "", ""), ylab = "Time before present (my)", col = c("chartreuse4", "darkorange", "blue"), main = "Saxifragaceae\nalliance")
+dev.new(width=2.5, height=4.75)#
+boxplot(eventData_diversification.crassulaceae_alliance$time, eventData_environment.crassulaceae_alliance$time, eventData_phenotype.crassulaceae_alliance$time, names=c("", "", ""), ylab = "Time before present (my)", col = c("chartreuse4", "darkorange", "blue"), main = "Crassulaceae\nalliance")
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/all_family_edata_objects.Rdata")
+ls()
+ls(pattern = "phenotype")
+rm(ls(pattern = "phenotype"))
+rm(list(ls(pattern = "phenotype")))
+rm(list = ls(pattern = "phenotype"))
+ls()
+list = ls(pattern = "aceae")
+list
+save(list = ls(pattern = "aceae"), file = "/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/all_family_edata_objects_diversificationenvironmentonly.Rdata")
+load("/Volumes/telemann/Saxifragales_work_redo/BAMM_bootstrap_REDO_beast/all_family_edata_objects_phenotypefixed.Rdata")
+dev.new(width=4, height=3)#
+ratematrix_phenotype_peridiscaceae_transformed = ratematrix_phenotype_peridiscaceae#
+ratematrix_phenotype_peridiscaceae_transformed[[1]] = (ratematrix_phenotype_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="blue", xlim = c(90, 0), ylim = c(0,1))#
+#
+ratematrix_environment_peridiscaceae_transformed = ratematrix_environment_peridiscaceae#
+ratematrix_environment_peridiscaceae_transformed[[1]] = (ratematrix_environment_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(90, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_peridiscaceae_transformed = ratematrix_diversification_peridiscaceae#
+ratematrix_diversification_peridiscaceae_transformed[[1]] = (ratematrix_diversification_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(90, 0), ylim = c(0,1), add = TRUE)
+library(BAMMtools)
+dev.new(width=4, height=3)#
+ratematrix_phenotype_peridiscaceae_transformed = ratematrix_phenotype_peridiscaceae#
+ratematrix_phenotype_peridiscaceae_transformed[[1]] = (ratematrix_phenotype_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_peridiscaceae_transformed, opacity = 0, avgCol="blue", xlim = c(90, 0), ylim = c(0,1))#
+#
+ratematrix_environment_peridiscaceae_transformed = ratematrix_environment_peridiscaceae#
+ratematrix_environment_peridiscaceae_transformed[[1]] = (ratematrix_environment_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_peridiscaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(90, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_peridiscaceae_transformed = ratematrix_diversification_peridiscaceae#
+ratematrix_diversification_peridiscaceae_transformed[[1]] = (ratematrix_diversification_peridiscaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_peridiscaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(90, 0), ylim = c(0,1), add = TRUE)
+# paeoniaceae#
+ratematrix_phenotype_paeoniaceae_transformed = ratematrix_phenotype_paeoniaceae#
+ratematrix_phenotype_paeoniaceae_transformed[[1]] = (ratematrix_phenotype_paeoniaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_paeoniaceae_transformed, opacity = 0, avgCol="blue", xlim = c(15, 0), ylim = c(0,1))#
+#
+ratematrix_environment_paeoniaceae_transformed = ratematrix_environment_paeoniaceae#
+ratematrix_environment_paeoniaceae_transformed[[1]] = (ratematrix_environment_paeoniaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_paeoniaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(15, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_paeoniaceae_transformed = ratematrix_diversification_paeoniaceae#
+ratematrix_diversification_paeoniaceae_transformed[[1]] = (ratematrix_diversification_paeoniaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_paeoniaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_paeoniaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(15, 0), ylim = c(0,1), add = TRUE)
+# daphniphyllaceae#
+ratematrix_phenotype_daphniphyllaceae_transformed = ratematrix_phenotype_daphniphyllaceae#
+ratematrix_phenotype_daphniphyllaceae_transformed[[1]] = (ratematrix_phenotype_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="blue", xlim = c(18, 0), ylim = c(0,1))#
+#
+ratematrix_environment_daphniphyllaceae_transformed = ratematrix_environment_daphniphyllaceae#
+ratematrix_environment_daphniphyllaceae_transformed[[1]] = (ratematrix_environment_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(18, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_daphniphyllaceae_transformed = ratematrix_diversification_daphniphyllaceae#
+ratematrix_diversification_daphniphyllaceae_transformed[[1]] = (ratematrix_diversification_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(18, 0), ylim = c(0,1), add = TRUE)
+dev.new(width=4, height=3)
+# daphniphyllaceae#
+ratematrix_phenotype_daphniphyllaceae_transformed = ratematrix_phenotype_daphniphyllaceae#
+ratematrix_phenotype_daphniphyllaceae_transformed[[1]] = (ratematrix_phenotype_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae_transformed, opacity = 0, avgCol="blue", xlim = c(18, 0), ylim = c(0,1))#
+#
+ratematrix_environment_daphniphyllaceae_transformed = ratematrix_environment_daphniphyllaceae#
+ratematrix_environment_daphniphyllaceae_transformed[[1]] = (ratematrix_environment_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_daphniphyllaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(18, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_daphniphyllaceae_transformed = ratematrix_diversification_daphniphyllaceae#
+ratematrix_diversification_daphniphyllaceae_transformed[[1]] = (ratematrix_diversification_daphniphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_daphniphyllaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(18, 0), ylim = c(0,1), add = TRUE)
+# altingiaceae#
+ratematrix_phenotype_altingiaceae_transformed = ratematrix_phenotype_altingiaceae#
+ratematrix_phenotype_altingiaceae_transformed[[1]] = (ratematrix_phenotype_altingiaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_altingiaceae_transformed, opacity = 0, avgCol="blue", xlim = c(18, 0), ylim = c(0,1))#
+#
+ratematrix_environment_altingiaceae_transformed = ratematrix_environment_altingiaceae#
+ratematrix_environment_altingiaceae_transformed[[1]] = (ratematrix_environment_altingiaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_altingiaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(18, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_altingiaceae_transformed = ratematrix_diversification_altingiaceae#
+ratematrix_diversification_altingiaceae_transformed[[1]] = (ratematrix_diversification_altingiaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_altingiaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_altingiaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(18, 0), ylim = c(0,1), add = TRUE)
+# hamamelidaceae#
+ratematrix_phenotype_hamamelidaceae_transformed = ratematrix_phenotype_hamamelidaceae#
+ratematrix_phenotype_hamamelidaceae_transformed[[1]] = (ratematrix_phenotype_hamamelidaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae_transformed, opacity = 0, avgCol="blue", xlim = c(30, 0), ylim = c(0,1))#
+#
+ratematrix_environment_hamamelidaceae_transformed = ratematrix_environment_hamamelidaceae#
+ratematrix_environment_hamamelidaceae_transformed[[1]] = (ratematrix_environment_hamamelidaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_hamamelidaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(30, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_hamamelidaceae_transformed = ratematrix_diversification_hamamelidaceae#
+ratematrix_diversification_hamamelidaceae_transformed[[1]] = (ratematrix_diversification_hamamelidaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_hamamelidaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_hamamelidaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(30, 0), ylim = c(0,1), add = TRUE)
+# cercidiphyllaceae#
+ratematrix_phenotype_cercidiphyllaceae_transformed = ratematrix_phenotype_cercidiphyllaceae#
+ratematrix_phenotype_cercidiphyllaceae_transformed[[1]] = (ratematrix_phenotype_cercidiphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae_transformed, opacity = 0, avgCol="blue", xlim = c(15, 0), ylim = c(0,1))#
+#
+ratematrix_environment_cercidiphyllaceae_transformed = ratematrix_environment_cercidiphyllaceae#
+ratematrix_environment_cercidiphyllaceae_transformed[[1]] = (ratematrix_environment_cercidiphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_cercidiphyllaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(15, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_cercidiphyllaceae_transformed = ratematrix_diversification_cercidiphyllaceae#
+ratematrix_diversification_cercidiphyllaceae_transformed[[1]] = (ratematrix_diversification_cercidiphyllaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_cercidiphyllaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_cercidiphyllaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(15, 0), ylim = c(0,1), add = TRUE)
+ratematrix_phenotype_iteaceae_transformed = ratematrix_phenotype_iteaceae#
+ratematrix_phenotype_iteaceae_transformed[[1]] = (ratematrix_phenotype_iteaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_iteaceae_transformed, opacity = 0, avgCol="blue", xlim = c(92, 0), ylim = c(0,1))#
+#
+ratematrix_environment_iteaceae_transformed = ratematrix_environment_iteaceae#
+ratematrix_environment_iteaceae_transformed[[1]] = (ratematrix_environment_iteaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_iteaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(92, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_iteaceae_transformed = ratematrix_diversification_iteaceae#
+ratematrix_diversification_iteaceae_transformed[[1]] = (ratematrix_diversification_iteaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_iteaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_iteaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(92, 0), ylim = c(0,1), add = TRUE)
+# grossulariaceae#
+ratematrix_phenotype_grossulariaceae_transformed = ratematrix_phenotype_grossulariaceae#
+ratematrix_phenotype_grossulariaceae_transformed[[1]] = (ratematrix_phenotype_grossulariaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_grossulariaceae_transformed, opacity = 0, avgCol="blue", xlim = c(28, 0), ylim = c(0,1))#
+#
+ratematrix_environment_grossulariaceae_transformed = ratematrix_environment_grossulariaceae#
+ratematrix_environment_grossulariaceae_transformed[[1]] = (ratematrix_environment_grossulariaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_grossulariaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(28, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_grossulariaceae_transformed = ratematrix_diversification_grossulariaceae#
+ratematrix_diversification_grossulariaceae_transformed[[1]] = (ratematrix_diversification_grossulariaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_grossulariaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_grossulariaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(28, 0), ylim = c(0,1), add = TRUE)
+# saxifragaceae#
+ratematrix_phenotype_saxifragaceae_transformed = ratematrix_phenotype_saxifragaceae#
+ratematrix_phenotype_saxifragaceae_transformed[[1]] = (ratematrix_phenotype_saxifragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_saxifragaceae_transformed, opacity = 0, avgCol="blue", xlim = c(72, 0), ylim = c(0,1))#
+#
+ratematrix_environment_saxifragaceae_transformed = ratematrix_environment_saxifragaceae#
+ratematrix_environment_saxifragaceae_transformed[[1]] = (ratematrix_environment_saxifragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_saxifragaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(72, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_saxifragaceae_transformed = ratematrix_diversification_saxifragaceae#
+ratematrix_diversification_saxifragaceae_transformed[[1]] = (ratematrix_diversification_saxifragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_saxifragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_saxifragaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(72, 0), ylim = c(0,1), add = TRUE)
+# crassulaceae#
+ratematrix_phenotype_crassulaceae_transformed = ratematrix_phenotype_crassulaceae#
+ratematrix_phenotype_crassulaceae_transformed[[1]] = (ratematrix_phenotype_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_crassulaceae_transformed, opacity = 0, avgCol="blue", xlim = c(80, 0), ylim = c(0,1))#
+#
+ratematrix_environment_crassulaceae_transformed = ratematrix_environment_crassulaceae#
+ratematrix_environment_crassulaceae_transformed[[1]] = (ratematrix_environment_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_crassulaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(80, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_crassulaceae_transformed = ratematrix_diversification_crassulaceae#
+ratematrix_diversification_crassulaceae_transformed[[1]] = (ratematrix_diversification_crassulaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_crassulaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(80, 0), ylim = c(0,1), add = TRUE)
+# cynomoriaceae#
+ratematrix_phenotype_cynomoriaceae_transformed = ratematrix_phenotype_cynomoriaceae#
+ratematrix_phenotype_cynomoriaceae_transformed[[1]] = (ratematrix_phenotype_cynomoriaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_cynomoriaceae_transformed, opacity = 0, avgCol="blue", xlim = c(23, 0), ylim = c(0,1))#
+#
+ratematrix_environment_cynomoriaceae_transformed = ratematrix_environment_cynomoriaceae#
+ratematrix_environment_cynomoriaceae_transformed[[1]] = (ratematrix_environment_cynomoriaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_cynomoriaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(23, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_cynomoriaceae_transformed = ratematrix_diversification_cynomoriaceae#
+ratematrix_diversification_cynomoriaceae_transformed[[1]] = (ratematrix_diversification_cynomoriaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_cynomoriaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_cynomoriaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(23, 0), ylim = c(0,1), add = TRUE)
+# penthoraceae#
+ratematrix_phenotype_penthoraceae_transformed = ratematrix_phenotype_penthoraceae#
+ratematrix_phenotype_penthoraceae_transformed[[1]] = (ratematrix_phenotype_penthoraceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_penthoraceae_transformed, opacity = 0, avgCol="blue", xlim = c(15, 0), ylim = c(0,1))#
+#
+ratematrix_environment_penthoraceae_transformed = ratematrix_environment_penthoraceae#
+ratematrix_environment_penthoraceae_transformed[[1]] = (ratematrix_environment_penthoraceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_penthoraceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(15, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_penthoraceae_transformed = ratematrix_diversification_penthoraceae#
+ratematrix_diversification_penthoraceae_transformed[[1]] = (ratematrix_diversification_penthoraceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_penthoraceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_penthoraceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(15, 0), ylim = c(0,1), add = TRUE)
+# haloragaceae#
+ratematrix_phenotype_haloragaceae_transformed = ratematrix_phenotype_haloragaceae#
+ratematrix_phenotype_haloragaceae_transformed[[1]] = (ratematrix_phenotype_haloragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_phenotype_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_phenotype_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_phenotype_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_phenotype_haloragaceae_transformed, opacity = 0, avgCol="blue", xlim = c(32, 0), ylim = c(0,1))#
+#
+ratematrix_environment_haloragaceae_transformed = ratematrix_environment_haloragaceae#
+ratematrix_environment_haloragaceae_transformed[[1]] = (ratematrix_environment_haloragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_environment_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_environment_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_environment_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_environment_haloragaceae_transformed, opacity = 0, avgCol="darkorange", xlim = c(32, 0), ylim = c(0,1), add = TRUE)#
+#
+ratematrix_diversification_haloragaceae_transformed = ratematrix_diversification_haloragaceae#
+ratematrix_diversification_haloragaceae_transformed[[1]] = (ratematrix_diversification_haloragaceae_transformed[[1]] - min(plotRateThroughTime(ratematrix_diversification_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))/(max(plotRateThroughTime(ratematrix_diversification_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg) - min(plotRateThroughTime(ratematrix_diversification_haloragaceae_transformed, opacity = 0, avgCol="#FF0000", ylim = c(0, 1), plot = FALSE)$avg))#
+plotRateThroughTime(ratematrix_diversification_haloragaceae_transformed, opacity = 0, avgCol="chartreuse4", xlim = c(32, 0), ylim = c(0,1), add = TRUE)
+dev.new(width=6, height=5)#
+plotRateThroughTime(ratematrix_diversification_peridiscaceae, opacity = 0, avgCol="#FF0000", ratetype="netdiv", ylim = c(0, 0.6))#
+plotRateThroughTime(ratematrix_diversification_paeoniaceae, opacity = 0, avgCol="#4F00AF", ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_daphniphyllaceae, opacity = 0, avgCol="#D80026",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_altingiaceae, opacity = 0, avgCol="#D80026",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_hamamelidaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_cercidiphyllaceae, opacity = 0, avgCol="#1200EC",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_iteaceae, opacity = 0, avgCol="#90006E",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_grossulariaceae, opacity = 0, avgCol="#0000FF",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_saxifragaceae, opacity = 0, avgCol="#7E0080",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_crassulaceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_cynomoriaceae, opacity = 0, avgCol="#64009A",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_aphanopetalaceae, opacity = 0, avgCol="#C80036",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_penthoraceae, opacity = 0, avgCol="#7B0083",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)#
+plotRateThroughTime(ratematrix_diversification_haloragaceae, opacity = 0, avgCol="#AC0052",ratetype="netdiv", ylim = c(0, 0.6), add = TRUE)
+dev.new(width=6, height=5)#
+plotRateThroughTime(ratematrix_phenotype_peridiscaceae, opacity = 0, avgCol="#FF0000", ylim = c(0, 3))#
+plotRateThroughTime(ratematrix_phenotype_paeoniaceae, opacity = 0, avgCol="#4F00AF", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae, opacity = 0, avgCol="#D80026", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_altingiaceae, opacity = 0, avgCol="#D80026", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae, opacity = 0, avgCol="#1200EC", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_iteaceae, opacity = 0, avgCol="#90006E", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_grossulariaceae, opacity = 0, avgCol="#0000FF", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_saxifragaceae, opacity = 0, avgCol="#7E0080", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_crassulaceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_cynomoriaceae, opacity = 0, avgCol="#64009A", ylim = c(0, 3), add = TRUE)#
+# plotRateThroughTime(ratematrix_phenotype_aphanopetalaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_penthoraceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 3), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_haloragaceae, opacity = 0, avgCol="#AC0052", ylim = c(0, 3), add = TRUE)
+dev.new(width=6, height=5)#
+plotRateThroughTime(ratematrix_phenotype_peridiscaceae, opacity = 0, avgCol="#FF0000", ylim = c(0, 1.5))#
+plotRateThroughTime(ratematrix_phenotype_paeoniaceae, opacity = 0, avgCol="#4F00AF", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_daphniphyllaceae, opacity = 0, avgCol="#D80026", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_altingiaceae, opacity = 0, avgCol="#D80026", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_hamamelidaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_cercidiphyllaceae, opacity = 0, avgCol="#1200EC", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_iteaceae, opacity = 0, avgCol="#90006E", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_grossulariaceae, opacity = 0, avgCol="#0000FF", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_saxifragaceae, opacity = 0, avgCol="#7E0080", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_crassulaceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_cynomoriaceae, opacity = 0, avgCol="#64009A", ylim = c(0, 1.5), add = TRUE)#
+# plotRateThroughTime(ratematrix_phenotype_aphanopetalaceae, opacity = 0, avgCol="#C80036", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_penthoraceae, opacity = 0, avgCol="#7B0083", ylim = c(0, 1.5), add = TRUE)#
+plotRateThroughTime(ratematrix_phenotype_haloragaceae, opacity = 0, avgCol="#AC0052", ylim = c(0, 1.5), add = TRUE)
+library(ggplot2)#
+#
+table = read.csv("BIOCLIM_1.out.updated.dropped", header = FALSE)#
+table = t(table)#
+%colnames(table) = table[1, ] # the first row will be the header#
+%table = table[-1, ]#
+#
+par(mfrow = c(91, 1))#
+par(mar=c(1,1,1,1))#
+#
+#for(i in seq(from=2, to=length(table[1,]))) {#
+#counts = as.integer(10000 * as.numeric(table[-1, i]))#
+#print(counts)#
+#hist(as.numeric(rep(table[-1, 1], counts)), breaks=50, space = 0)#
+#}#
+#
+list = c()#
+for(i in seq(from=2, to=length(table[1,]))) {#
+list[[i-1]] = data.frame(table[-1, 1], table[-1, i])#
+colnames(list[[i-1]]) <- c("X", "Y")#
+}#
+#
+lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+)
+for(i in 1:length(list)){#
+p <- ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}#
+do.call(grid.arrange, p)
+for(i in 1:length(list)){#
+p <- ggplot(list[i], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}#
+do.call(grid.arrange, p)
+for(i in 1:length(list)){#
+p <- ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}#
+do.call(grid.arrange, p)
+p
+install.packages("library("gridExtra)
+install.packages("gridExtra)
+install.packages("gridExtra")
+library(ggplot2)#
+library(gridExtra) # Arranging plots
+do.call(grid.arrange, p)
+for(i in 1:length(list)){#
+p <- ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}
+do.call(grid.arrange, p)
+length(p)
+length(list)
+p <- list()#
+for(i in 1:length(list)){#
+p <- ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}
+do.call(grid.arrange, p)
+p <- list()#
+for(i in 1:length(list)){#
+p[[1]] <- ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}
+do.call(grid.arrange, p)
+do.call(grid.arrange, p)
+p <- list()#
+for(i in 1:length(list)){#
+print(i)#
+p[[1]] <- ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+}
+plots = lapply(list, function(i) ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity'))
+list = c()#
+for(i in seq(from=2, to=length(table[1,]))) {#
+list[[i-1]] = data.frame(table[-1, 1], table[-1, i])#
+colnames(list[[i-1]]) <- c("X", "Y")#
+}
+plots = lapply(list, function(i) ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity'))
+plots = lapply(#
+list, #
+function(i) ggplot(list[[i]], aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+)
+lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity')#
+)
+do.call(grid.arrange, plots)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity') + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())#
+)
+do.call(grid.arrange, plots)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity') + theme_void() #
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity') + theme_void() #
+)
+do.call(grid.arrange, plots)
+install.packages("cowplot")
+library(cowplot)
+plot_grid(plots, ncol = 1, nrow = length(plots))
+plot_grid(plots[1], ncol = 1, nrow = length(plots))
+plot_grid(plotlist = plots, ncol = 1, nrow = length(plots))
+do.call(grid.arrange, plots, ncols = 1)
+do.call(grid.arrange, plots, ncol = 1)
+do.call(grid.arrange(ncol = 1), plots)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity') + theme_void() #
+)
+do.call(grid.arrange(ncol = 1), plots)
+do.call(grid.arrange(), plots)
+do.call(grid.arrange, plots)
+plot[1]
+plot[[1]]
+plots[1]
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + theme_void() #
+)
+do.call(grid.arrange(), plots)
+do.call(grid.arrange, plots)
+plots(1)
+plots[1]
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1, xlim = c(0,max(i$Y))) + theme_void() #
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1, xlim = c(0,max(i$X))) + theme_void() #
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1, xlim = c(0,max(as.numeric(i$Y)))) + theme_void() #
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + theme_void() + scale_y_continuous(limits = c(0,max(as.numeric(i$Y))))#
+)
+do.call(grid.arrange, plots)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + theme_void() + scale_y(limits = c(0,max(as.numeric(i$Y))))#
+)
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + theme_void() + coord_cartesian(ylim = c(0,max(as.numeric(i$Y))))#
+)
+do.call(grid.arrange, plots)
+plots[1]
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + coord_cartesian(ylim = c(0,max(as.numeric(i$Y))))#
+)
+plots[1]
+list = c()#
+for(i in seq(from=2, to=length(table[1,]))) {#
+list[[i-1]] = data.frame(table[-1, 1], as.numeric(table[-1, i]))#
+colnames(list[[i-1]]) <- c("X", "Y")#
+}
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + coord_cartesian(ylim = c(0,max(as.numeric(i$Y))))#
+)
+plots[1]
+plots = lapply(#
+list, #
+function(i) ggplot(i, aes(x=X, y=Y)) + geom_bar(stat = 'identity', width=1) + theme_void() + coord_cartesian(ylim = c(0,max(as.numeric(i$Y))))#
+)
+do.call(grid.arrange, plots)
+do.call(grid.arrange, plots)
+do.call(grid.arrange, plots, cols = 1)
+do.call(grid.arrange, plots, arrangeGrob(ncol=1))
+do.call(grid.arrange, plots, arrangeGrob(plots, ncol=1))
+do.call(grid.arrange, plots, ncol=1)
+grid.arrange(plots, ncol=1)
+grid.arrange(arrangeGrob(plots), ncol=1)
+grid.arrange(arrangeGrob(list = plots), ncol=1)
+grid.arrange(arrangeGrob(grobs = plots), ncol=1)
+grid.arrange(arrangeGrob(grobs = plots), ncol=1)
+grid.arrange(arrangeGrob(grobs = plots, ncol=1))
+grid.arrange(arrangeGrob(grobs = plots, ncol=1))
+grid.arrange(arrangeGrob(grobs = plots))
+grid.arrange(arrangeGrob(grobs = plots, ncol=1, as.table = FALSE))
