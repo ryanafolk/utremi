@@ -1,5 +1,5 @@
 # Heuchera ancestral niche analyses
-Scripts written in python3 should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
+Scripts should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`. Some paths are hard-coded. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
 
 ## Set up directory structure
 ```
