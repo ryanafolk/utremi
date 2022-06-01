@@ -1,9 +1,14 @@
 # Heuchera ancestral niche analyses
 Scripts written in python3 should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
 
+## Set up directory structure
+mkdir ancestral_reconstruction_astral
+mkdir ancestral_projection_astral
+
 ## Ancestral niche analyses
 ### Install BiotaphyPy
 ```
+cd ancestral_reconstruction_astral
 git clone https://github.com/biotaphy/BiotaPhyPy
 cd BiotaPhyPy/
 python setup.py install
@@ -22,6 +27,9 @@ done
 ```
 
 ## Downstream analyses
+```
+cd ..
+cd ancestral_projection_astral
 1. `date_histograms_from_mcmctree.r` generates dating histograms from MCMCtree output. Run with the MCMC as mcmc.txt in the working directory. 
 
 2. `projections_binned_ancestralreconstruction.py` performs the range projections on a per-node basis.  
