@@ -32,7 +32,7 @@ for f in ./pnos/*.dropped; do
 ```
 for f in out_*.tre; do
     g=`echo ${f} | sed 's/\.tre//g'`
-    ./annotate_maximum_density.py ${f} ${g}.maxdensity.tre
+    python3 annotate_maximum_density.py ${f} ${g}.maxdensity.tre
     done
 ```
 
