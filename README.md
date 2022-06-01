@@ -7,10 +7,8 @@ The python scripts have various dependencies that can be queried by attempting t
 ## Set up directory structure
 ```
 mkdir ancestral_reconstruction_astral
-mv annotate_maximum_density.py ancestral_reconstruction_astral
 
 mkdir ancestral_projection_astral
-mv *.py *.r mkdir ancestral_projection_astral
 ```
 
 ## Ancestral niche analyses
@@ -30,7 +28,7 @@ for f in ./pnos/*.dropped; do
     g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
     echo ${g}
     mkdir plots_${g}
-    python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
+    python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py ./../data/astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
     done
 ```
 
@@ -39,7 +37,7 @@ This is used for color plotting. In the case of ties one is arbitrarily taken.
 ```
 for f in out_*.tre; do
     g=`echo ${f} | sed 's/\.tre//g'`
-    python3 annotate_maximum_density.py ${f} ${g}.maxdensity.tre
+    python3 ./../scripts/annotate_maximum_density.py ${f} ${g}.maxdensity.tre
     done
 ```
 
@@ -50,13 +48,13 @@ Generates dating histograms from MCMCtree output. Note the path to the mcmc.txt 
 ```
 cd ..
 cd ancestral_projection_astral
-R CMD BATCH date_histograms_from_mcmctree.r 
+R CMD BATCH ./../scripts/date_histograms_from_mcmctree.r 
 # A file called dating_histograms.csv should appear in the working directory
 ```
 
 ### 2. Perform geographic range projections on paleoclimate data
 ```
-python3 projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral_testrun/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
+python3 ./../scripts/projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral_testrun/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
 mkdir projected
 mv *tifout*.tif ./projected/
 # There should now be lots of TIFs in a folder called projected
@@ -65,7 +63,7 @@ mv *tifout*.tif ./projected/
 ### 3. Weight projections by posterior probability of occurrence date
 File paths should reflect output of #1 and #2 above and should not be messed with just yet.  
 ```
-python3 weight_projection_by_date_probability.py dating_histograms.csv 
+python3 ./../scripts/weight_projection_by_date_probability.py dating_histograms.csv 
 # There should now be yet more TIFs in a folder called projected_weighted
 ```
    
@@ -73,7 +71,7 @@ python3 weight_projection_by_date_probability.py dating_histograms.csv
 ```
 mkdir combined_normalized
 for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort | uniq`; do
-    python3 trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
+    python3 ./../scripts/trim_sum_and_normalize_projections.py ./combined_normalized/${i}.combined.tif -178.2 6.6 -49.0 83.3 --rasters `ls projected_weighted/*_${i}.*tif`
     done
 ```
 We end up with one TIF per time period, representing joint probabilities of occurrence for all species.
