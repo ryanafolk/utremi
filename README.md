@@ -2,7 +2,7 @@
 The quoted code should be run in bash. Ensure that paths of output from each step are not being messed with. Some paths are hard-coded in scripts and should be changed as noted. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
 
 ## Setup  
-The starting directory is outlined below:   
+If you want to run this pipeline yourself, setup your directory as followed:
 
 ```     
 Directory/   
@@ -24,7 +24,8 @@ Directory/
 |	├──   trim_sum_and_normalize_projections.py   
 |	├──   projections_binned_ancestralreconstruction.py   
 |	├──   weight_projection_by_date_probability.py   
-|	└──   date_histograms_from_mcmctree.r   
+└─ 	└──   date_histograms_from_mcmctree.r   
+
 ```
 
 ## Subfolders
