@@ -5,6 +5,7 @@ Scripts should be run in bash per below. The ancestral reconstruction should be 
 ```
 mkdir ancestral_reconstruction_astral
 mkdir ancestral_projection_astral
+mv *.py *.r mkdir ancestral_projection_astral
 ```
 
 ## Ancestral niche analyses
