@@ -2,8 +2,10 @@
 Scripts written in python3 should be run in bash per below. The ancestral reconstruction should be run, with results in the paths specified below. E.g., tables output should be at `./ancestral_reconstruction_tables`.
 
 ## Set up directory structure
+```
 mkdir ancestral_reconstruction_astral
 mkdir ancestral_projection_astral
+```
 
 ## Ancestral niche analyses
 ### Install BiotaphyPy
