@@ -22,6 +22,13 @@ Directory/
 |	├──   projections_binned_ancestralreconstruction.py   
 |	├──   weight_projection_by_date_probability.py   
 └─ 	└──   date_histograms_from_mcmctree.r   
+├── comparision
+|	├──  phyloclim
+|	     ├──  01_phyloclim_run.R
+|	     ├── data
+|	         ├── PNO
+|               └─── ... 
+└─           └── astral_mcmctree_rep3.tre
 ```
 
 To duplicate paper results, run as follows without changes. The only thing missing in the path is paleoclimatic data (see that repository).
@@ -41,6 +48,8 @@ Python and R scripts.
 
 `ancestral_projection` folders contain results comprising an animated GIF showing trends in habitat suitability from the Pleistocene to present based on mean annual temperature. There is a folder for each of the ASTRAL and concatenation topologies.
 
+### `comparision`  
+Comparsion with previous published methods including phyloclim and ambitus. 
 
 ## Dependencies
 The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. A further incomplete list is:
