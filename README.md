@@ -48,7 +48,7 @@ Python and R scripts.
 
 `ancestral_projection` folders contain results comprising an animated GIF showing trends in habitat suitability from the Pleistocene to present based on mean annual temperature. There is a folder for each of the ASTRAL and concatenation topologies.
 
-### `comparision`  
+### `comparison`  
 Comparsion with previous published methods including phyloclim and ambitus. 
 
 ## Dependencies
