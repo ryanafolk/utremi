@@ -108,7 +108,7 @@ R CMD BATCH ./../scripts/date_histograms_from_mcmctree.r
 
 ### 2. Perform geographic range projections on paleoclimate data
 ```
-python3 ./../scripts/projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
+python3 ./../scripts/projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l /mnt/Botbot/heuchera_research/Heuchera_complete_project/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
 mkdir projected
 mv *tifout*.tif ./projected/
 # There should now be lots of TIFs in a folder called projected
