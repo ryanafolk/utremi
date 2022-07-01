@@ -78,7 +78,7 @@ Ensure the cloned repository remains in the working directory for the next step.
 
 ### 2. Run ancestral niche reconstruction in a loop, one iteration per variable
 ```
-for f in ./pnos/*.dropped; do
+for f in ./../pnos/*.dropped; do
     g=$( echo ${f} | sed 's/.*\///g' | sed 's/\..*//g' )
     echo ${g}
     mkdir plots_${g}
