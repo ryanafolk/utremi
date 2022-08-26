@@ -131,3 +131,7 @@ for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort
 We end up with one TIF per time period, representing joint probabilities of occurrence for all species.
 
 All scripts contain usage examples in header comments. 
+
+# Associated Publication 
+
+Folk RA*, Gaynor ML*, Engle-Wrye NJ, O’Meara BC, Soltis PS, Soltis DS, Guralnick RP, Smith SA, Grady CJ, Okuyama Y. 2022. Identifying climatic drivers of hybridization in Heuchereae (Saxifragaceae). *In review*. [Preprint avaliable](https://www.biorxiv.org/content/10.1101/2022.08.24.505154v1)
