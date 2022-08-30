@@ -31,7 +31,7 @@ Directory/
 └─           └── astral_mcmctree_rep3.tre
 ```
 
-To duplicate paper results, run as follows without changes. The only thing missing in the path is paleoclimatic data (see that repository).
+To duplicate paper results, run as follows without changes. The only thing missing in the path is paleoclimatic data (see Dryad).
 
 ## Subfolders
 ### `data`
