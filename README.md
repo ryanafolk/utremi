@@ -52,7 +52,7 @@ Python and R scripts.
 Comparsion with previous published methods including phyloclim and ambitus. 
 
 ## Dependencies
-The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. A further incomplete list is:
+The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. GDAL can be challenging to install on some systems; for Ubuntu systems `apt` is recommended and `homebrew` or `miniconda` for OS-X. The Python bindings must also be available; e.g., typing `gdal_translate` in the shell should execute. A further incomplete list is:
 ```
 pip3 install rasterio
 pip3 install dendropy
