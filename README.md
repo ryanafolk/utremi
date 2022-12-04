@@ -31,7 +31,7 @@ Directory/
 └─           └── astral_mcmctree_rep3.tre
 ```
 
-To duplicate paper results, run as follows without changes. The only thing missing in the path is paleoclimatic data (see that repository).
+To duplicate paper results, run as follows without changes. The only thing missing in the path is paleoclimatic data (see Dryad).
 
 ## Subfolders
 ### `data`
@@ -52,7 +52,7 @@ Python and R scripts.
 Comparsion with previous published methods including phyloclim and ambitus. 
 
 ## Dependencies
-The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. A further incomplete list is:
+The python scripts have various dependencies that can be queried by attempting to run the scripts; full installation instructions are only given for BiotaphyPy below. Most important is a full working install of GDAL (both the Python library and the executables) that is in the path. GDAL can be challenging to install on some systems; for Ubuntu systems `apt` is recommended and `homebrew` or `miniconda` for OS-X. The Python bindings must also be available; e.g., typing `gdal_translate` in the shell should execute. A further incomplete list is:
 ```
 pip3 install rasterio
 pip3 install dendropy
@@ -108,7 +108,7 @@ R CMD BATCH ./../scripts/date_histograms_from_mcmctree.r
 
 ### 2. Perform geographic range projections on paleoclimate data
 ```
-python3 ./../scripts/projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral_testrun/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l ./../../Heuchera_complete_project/ancestral_projection_astral/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
+python3 ./../scripts/projections_binned_ancestralreconstruction.py ./../ancestral_reconstruction_astral/out_table_BIOCLIM_1.txt ./BIOCLIM_1 -l /mnt/Botbot/heuchera_research/Heuchera_complete_project/ShellyFinal_NovemberLayers_2019/bio1_final/*.tif
 mkdir projected
 mv *tifout*.tif ./projected/
 # There should now be lots of TIFs in a folder called projected
@@ -131,3 +131,7 @@ for i in `ls projected_weighted/*.tif | sed 's/.*_//g' | sed 's/\.tif//g' | sort
 We end up with one TIF per time period, representing joint probabilities of occurrence for all species.
 
 All scripts contain usage examples in header comments. 
+
+# Associated Publication 
+
+Folk RA*, Gaynor ML*, Engle-Wrye NJ, O’Meara BC, Soltis PS, Soltis DS, Guralnick RP, Smith SA, Grady CJ, Okuyama Y. 2022. Identifying climatic drivers of hybridization in Heuchereae (Saxifragaceae). *In review*. [Preprint avaliable](https://www.biorxiv.org/content/10.1101/2022.08.24.505154v1)
