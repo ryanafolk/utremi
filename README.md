@@ -1,4 +1,6 @@
-# Heuchera ancestral niche analyses
+# Utremi
+This code is for performing ancestral niche reconstruction according to the histogram method discussed in Folk et al. 2022 (reference at the bottom of this page) and reproducing analyses from the same paper.
+
 The quoted code should be run in bash. Ensure that paths of output from each step are not being messed with. Some paths are hard-coded in scripts and should be changed as noted. PNO files should be in a directory called "pnos", and the path to mcmc output should be updated in `date_histograms_from_mcmctree.r`.
 
 ## Setup  
