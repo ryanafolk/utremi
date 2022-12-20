@@ -39,6 +39,9 @@ To duplicate paper results, run as follows without changes. The only thing missi
 ### `data`
 Tree and MCMCtree output.
 
+### `occurrences`
+Occurrence files in the expected format for [pno_calc](https://github.com/ryanafolk/pno_calc).
+
 ### `pnos`
 PNO files in the expected format.
 
