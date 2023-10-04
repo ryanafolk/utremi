@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/682255504.svg)](https://zenodo.org/badge/latestdoi/682255504)
+[![DOI](https://zenodo.org/badge/265949257.svg)](https://zenodo.org/badge/latestdoi/265949257)
 # Utremi
 This code is for performing ancestral niche reconstruction according to the histogram method discussed in Folk et al. 2022 (reference at the bottom of this page) and reproducing analyses from the same paper.
 
