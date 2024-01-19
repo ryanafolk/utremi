@@ -64,6 +64,10 @@ pip3 install rasterio
 pip3 install dendropy
 ```
 
+## Clone the repository
+git clone https://github.com/ryanafolk/utremi
+cd utremi
+
 ## Set up directory structure
 ```
 mkdir ancestral_reconstruction_astral
