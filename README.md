@@ -65,8 +65,10 @@ pip3 install dendropy
 ```
 
 ## Clone the repository
+```
 git clone https://github.com/ryanafolk/utremi
 cd utremi
+```
 
 ## Set up directory structure
 ```
