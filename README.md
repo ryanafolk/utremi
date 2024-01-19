@@ -91,6 +91,7 @@ for f in ./../pnos/*.dropped; do
     python3 BiotaPhyPy/biotaphy/tools/ancestral_distribution.py ./../data/astral_mcmctree_rep3.tre newick ${f} csv out_${g}.tre nexus -c out_table_${g}.txt -p plots_${g}
     done
 ```
+If you get module import errors at this step, there is something wrong with the path in your BiotaPhyPy install. This seems to only affect certain systems, and I am still working on it.
 
 ### 3. Annotate trees by the single bin value with maximum probability density
 This is used for color plotting. In the case of ties one is arbitrarily taken.
